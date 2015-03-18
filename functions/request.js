@@ -13,7 +13,7 @@ function request(callback) {
 	if (splitogtitle.length !== 2) {
 		return;
 	}
-	page.path = $('input[name="path"]').attr('value');
+	page.path = $('input[name="path"]').val();
 	page.organization = splitogtitle[0];
 	page.repo = splitogtitle[1];
 	

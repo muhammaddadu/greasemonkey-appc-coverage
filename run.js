@@ -5,5 +5,9 @@ function Runner() {
 	});
 }
 
-// Start script
-Runner();
+// When the page has loaded
+$(document).ready(function() {
+	// Start script
+	Runner();
+});
+

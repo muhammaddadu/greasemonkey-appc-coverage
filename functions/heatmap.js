@@ -10,11 +10,13 @@ var heatmap = function(data) {
  * Toggle On
  */
 heatmap.prototype.on = function() {
+	var status = false;
 	for (var f = 0, max = this.coverage.length; f < max; ++f) {
 
 		var url_path = document.URL.substring(document.URL.length - this.path.length);
 
 		if (url_path == this.path) {
+			status = true;
 			var hits = this.coverage[f].lines.hit,
 			lines = this.coverage[f].lines.details;
 
@@ -32,6 +34,7 @@ heatmap.prototype.on = function() {
 			}
 		}
 	}
+	return status;
 }
 
 

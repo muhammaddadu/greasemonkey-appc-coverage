@@ -34,11 +34,13 @@ var heatmap = function(data) {
  * Toggle On
  */
 heatmap.prototype.on = function() {
+	var status = false;
 	for (var f = 0, max = this.coverage.length; f < max; ++f) {
 
 		var url_path = document.URL.substring(document.URL.length - this.path.length);
 
 		if (url_path == this.path) {
+			status = true;
 			var hits = this.coverage[f].lines.hit,
 			lines = this.coverage[f].lines.details;
 
@@ -56,6 +58,7 @@ heatmap.prototype.on = function() {
 			}
 		}
 	}
+	return status;
 }
 
 
@@ -94,9 +97,17 @@ function request(callback) {
 	if (splitogtitle.length !== 2) {
 		return;
 	}
-	page.path = $('input[name="path"]').val();
+
+	//page.path = $('input[name="path"]').val();
 	page.organization = splitogtitle[0];
 	page.repo = splitogtitle[1];
+	
+	var aHref = $('#raw-url').attr('href').split('/');
+	page.path = '';
+	for (var x = 5, max = aHref.length; x < max; ++x) {
+		page.path += '/' + aHref[x];
+	}
+	console.log(page.path);
 	
 	var path = 'https://coverage.appcelerator.com/' + page.organization + '/' + page.repo + '.view?json=true';
 	
@@ -135,6 +146,11 @@ function Runner() {
 	request(function(err, data) {
 		var status = false,
 			hm = new heatmap(data);
+		
+		if (!hm) {
+			return;
+		}
+
 		button('Toggle Coverage', function() {
 			if (!status) {
 				hm.on();

@@ -13,9 +13,17 @@ function request(callback) {
 	if (splitogtitle.length !== 2) {
 		return;
 	}
-	page.path = $('input[name="path"]').val();
+
+	//page.path = $('input[name="path"]').val();
 	page.organization = splitogtitle[0];
 	page.repo = splitogtitle[1];
+	
+	var aHref = $('#raw-url').attr('href').split('/');
+	page.path = '';
+	for (var x = 5, max = aHref.length; x < max; ++x) {
+		page.path += '/' + aHref[x];
+	}
+	console.log(page.path);
 	
 	var path = 'https://coverage.appcelerator.com/' + page.organization + '/' + page.repo + '.view?json=true';
 	

@@ -3,6 +3,11 @@ function Runner() {
 	request(function(err, data) {
 		var status = false,
 			hm = new heatmap(data);
+		
+		if (!hm) {
+			return;
+		}
+
 		button('Toggle Coverage', function() {
 			if (!status) {
 				hm.on();

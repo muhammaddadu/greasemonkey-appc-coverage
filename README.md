@@ -2,6 +2,8 @@
 GitHub Code Coverage Heat Map (using Greasemonkey)
 Authors : Muhammad Dadu, Gary Mathews
 
+![alt tag](http://puu.sh/gEUZd/2773588565.png)
+
 ## How to use?
 1. Install _script.js_ into greesemonkey
 2. Navigate to any source file covered by appc-coverage on github

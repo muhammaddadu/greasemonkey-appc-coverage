@@ -45,7 +45,7 @@ heatmap.prototype.on = function() {
 			lines = this.coverage[f].lines.details;
 
 			var rainbow = new Rainbow();
-			rainbow.setSpectrum('yellow', 'red');
+			rainbow.setSpectrum('lightyellow', 'lightpink');
 			rainbow.setNumberRange(0, hits);
 
 			for (var i = 0, maxI = lines.length; i < maxI; ++i) {
